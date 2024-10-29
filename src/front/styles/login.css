@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensures full viewport height */
+  padding: 0 15px; /* Adds a bit of padding to avoid touching screen edges */
+}
+
+.login-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px; /* Restricts width to prevent excessive stretching */
+}
+
+.card {
+  width: 100%; /* Makes card fit within its container */
+  max-width: 100%; /* Allows flexibility */
+}
+
+.card-body {
+  padding-left: 1rem !important; /* Adds left padding for better spacing */
+  padding-right: 1rem !important; /* Adds right padding for better spacing */
+  text-align: center; /* Centers text content */
+}
