@@ -5,27 +5,25 @@ const LoginForm = () => {
     const [password, setPassword] = useState("");
 
     // Handle Google Login Response
-    const handleGoogleLogin = (response) => {
+    const handleGoogleLogin = async (response) => {
         console.log("Google ID Token:", response.credential);
-
-        // Send the ID token to your backend for verification
-        // fetch("/api/google-login", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({ token: response.credential })
-        // })
-        // .then((res) => res.json())
-        // .then((data) => {
-        //     if (data.success) {
-        //         console.log("Google Login successful");
-        //         // Redirect or perform any action after successful login
-        //     } else {
-        //         alert("Google login failed. Please try again.");
-        //     }
-        // })
-        // .catch((error) => console.error("Error during Google login:", error));
+        try {
+            const res = await fetch("/api/google-auth", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ token: response.credential })
+            });
+            const data = await res.json();
+            
+          
+              
+                localStorage.setItem('authToken', data.access_token);
+               
+        } catch (error) {
+            console.error("Error during Google login:", error);
+            alert("Login failed. Please try again.");
+        }
+        
     };
 
     // Initialize Google Sign-In
